@@ -16,8 +16,7 @@
 
 @implementation PlaceDetails
 
-- (BOOL)isWeekend
-{
+- (BOOL)isWeekend {
     NSDate *today = [NSDate date];
     NSDateFormatter *myFormatter = [[NSDateFormatter alloc] init];
     [myFormatter setDateFormat:@"c"];
@@ -29,8 +28,7 @@
     return NO;
 }
 
-- (NSString *)todayOpen
-{
+- (NSString *)todayOpen {
     if ([self isWeekend]) {
         return self.weekendOpen;
     } else {
@@ -38,8 +36,7 @@
     }
 }
 
-- (NSString *)todayClose
-{
+- (NSString *)todayClose {
     if ([self isWeekend]) {
         return self.weekendClose;
     } else {

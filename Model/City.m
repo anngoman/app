@@ -40,8 +40,7 @@ static NSString *kLongitude = @"kLongitude";
     [coder encodeDouble:_longitude forKey:kLongitude];
 }
 
-- (BOOL)isEqual:(City*)object
-{
+- (BOOL)isEqual:(City*)object {
     return [_abbr isEqualToString:object.abbr];
 }
 

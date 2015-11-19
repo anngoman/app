@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 
-@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
+@property (weak, nonatomic) IBOutlet UIView *imageGalleryContainer;
 @property (weak, nonatomic) IBOutlet UILabel *streetLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeWorkLabel;

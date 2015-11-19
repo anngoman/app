@@ -25,8 +25,7 @@
     // Configure the view for the selected state
 }
 
-- (void) configureWithPlace:(Place*)place
-{
+- (void) configureWithPlace:(Place*)place {
     self.nameLabel.text = place.name;
     
     if (place.distance < 1000) {
@@ -50,8 +49,7 @@
 }
 
 //parallax cell
-- (void)cellOnTableView:(UITableView *)tableView didScrollOnView:(UIView *)view
-{
+- (void)cellOnTableView:(UITableView *)tableView didScrollOnView:(UIView *)view {
     CGRect rectInSuperview = [tableView convertRect:self.frame toView:view];
     
     float distanceFromCenter = CGRectGetHeight(view.frame)/2 - CGRectGetMinY(rectInSuperview);

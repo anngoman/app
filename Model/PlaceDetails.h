@@ -25,7 +25,7 @@
 @property (nonatomic, readonly) NSString *todayOpen;
 @property (nonatomic, readonly) NSString *todayClose;
 
-@property (nonatomic, strong) NSString *costСalian;
+@property (nonatomic, strong) NSString *costCalian;
 @property (nonatomic, strong) NSString *costTea;
 
 @property (nonatomic, assign) double rateAtmosphere;

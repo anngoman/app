@@ -32,7 +32,7 @@ static NSString *kFavorites = @"kFavoritesKey";
     }
 }
 
-- (City *)city{
+- (City *)city {
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:kCity];
     if (data) {
         return [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -47,8 +47,7 @@ static NSString *kFavorites = @"kFavoritesKey";
     }
 }
 
-- (NSArray *)favorites
-{
+- (NSArray *)favorites {
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:kFavorites];
     if (data) {
         return [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -59,8 +58,7 @@ static NSString *kFavorites = @"kFavoritesKey";
 
 #pragma mark - Favorites Methods
 
-- (void) addToFavorites:(Place*)place
-{
+- (void) addToFavorites:(Place*)place {
     if (![self isFavoritePlace:place]) {
         NSMutableArray *favorites = self.favorites.mutableCopy;
         [favorites addObject:place];
@@ -80,8 +78,7 @@ static NSString *kFavorites = @"kFavoritesKey";
     }
 }
 
-- (BOOL)isFavoritePlace:(Place*)place
-{
+- (BOOL)isFavoritePlace:(Place*)place {
     NSInteger index = [self.favorites indexOfObjectPassingTest:^BOOL(Place* placeObj, NSUInteger idx, BOOL *stop) {
         return (place.id == placeObj.id);
     }];

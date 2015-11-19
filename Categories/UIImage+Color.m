@@ -10,8 +10,7 @@
 
 @implementation UIImage (Color)
 
-+ (UIImage *)imageWithColor:(UIColor *)color
-{
++ (UIImage *)imageWithColor:(UIColor *)color {
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -54,8 +53,7 @@
 }
 
 +(UIImage*) drawOverlayImage:(UIImage*) overlayImage
-              inImage:(UIImage*) image
-{
+              inImage:(UIImage*) image {
     UIGraphicsBeginImageContextWithOptions(image.size, FALSE, 0.0);
     [image drawInRect:CGRectMake( 0, 0, image.size.width, image.size.height)];
     [overlayImage drawInRect:CGRectMake( 0, 0, image.size.width, image.size.height)];

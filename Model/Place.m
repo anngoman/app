@@ -70,22 +70,19 @@ static NSString *kMainImage = @"kMainImage";
 #pragma mark -  Sorting / Filtering Methods
 
 
-+ (NSArray*)sortedPlacesByDistance:(NSArray*)places
-{
++ (NSArray*)sortedPlacesByDistance:(NSArray*)places {
     return [places linq_sort:^id(Place *place) {
         return [NSNumber numberWithDouble:place.distance];
     }];
 }
 
-+ (NSArray*)sortedPlacesByRating:(NSArray*)places
-{
++ (NSArray*)sortedPlacesByRating:(NSArray*)places {
     return [[places linq_sort:^id(Place *place) {
         return [NSNumber numberWithDouble:place.rate];
     }] linq_reverse];
 }
 
-+ (NSArray*)filteredPlacesByName:(NSArray*)places withString:(NSString*)searchString
-{
++ (NSArray*)filteredPlacesByName:(NSArray*)places withString:(NSString*)searchString {
     return [places linq_where:^BOOL(Place* place) {
         return [place.name.lowercaseString rangeOfString:searchString.lowercaseString].location != NSNotFound;
     }];

@@ -6,32 +6,26 @@
 //  Copyright (c) 2015 victorsharov. All rights reserved.
 //
 
-#import "citySelectViewController.h"
+#import "LocationSelectViewController.h"
 #import "LocatorHTTPClient.h"
 #import "MMProgressHUD.h"
 #import "City.h"
 #import "SettingsManager.h"
 
-@interface citySelectViewController ()
-{
-    NSMutableArray *_cities;
-}
+@interface LocationSelectViewController () <UITableViewDataSource,UITableViewDelegate>
+@property (strong, nonatomic) NSMutableArray *cities;
+@property (weak, nonatomic) IBOutlet UITableView *tablewView;
 
 @end
 
-@implementation citySelectViewController
+@implementation LocationSelectViewController
 
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-
-
     [self loadCities];
 }
 
-- (void)loadCities
-{
+- (void)loadCities {
     [MMProgressHUD showWithTitle:@"Загрузка городов..."];
     [[LocatorHTTPClient sharedLocatorHTTPClient] getCitiesWithSuccessBlock:^(NSArray *items) {
         [MMProgressHUD dismissWithSuccess:@"Загружено"];
@@ -43,38 +37,29 @@
         if (error.localizedDescription) {
             textError = error.localizedDescription;
         }
-        
         [MMProgressHUD dismissWithError:textError title:@"Ошибка"];
-        
     }];
 }
 
 #pragma mark - UITableViewDataSource / UITableViewDelegate
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [_cities count];
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
-    
-    City *city = _cities[indexPath.row];
+
+  City *city = _cities[indexPath.row];
     cell.textLabel.text = city.name;
-    
-    UIView *bgColorView = [[UIView alloc] init];
-    bgColorView.backgroundColor = ([city isEqual:[SettingsManager sharedSettingsManager].city])?SELECTED_BACKGROUND_COLOR:BACKGROUND_COLOR;
-    cell.backgroundView = bgColorView;
-    
+    cell.backgroundColor = ([city isEqual:[SettingsManager sharedSettingsManager].city])?SELECTED_BACKGROUND_COLOR:BACKGROUND_COLOR;
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if ([SettingsManager sharedSettingsManager].city == nil) {
         [self performSegueWithIdentifier:@"PlacesSegue" sender:nil];
@@ -82,11 +67,9 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     [SettingsManager sharedSettingsManager].city =  _cities[indexPath.row];
-//    [tableView reloadData];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 

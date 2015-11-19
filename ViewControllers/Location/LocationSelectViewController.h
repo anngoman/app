@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface citySelectViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface LocationSelectViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITableView *tablewView;
 
 @end
